@@ -1,0 +1,104 @@
+<div class="signup__container" style="background:#000">
+  <div class="container__child signup__thumbnail" style="background: #e3e3e3; width:40%">
+    <div class="thumbnail__content text-center" >
+      <h1 class="heading--primary">Welcome to APEX INSURANCE.</h1>
+      <h2 class="heading--secondary">Are you ready to join the apex?</h2>
+    </div>
+    <div class="thumbnail__links">
+     
+    </div>
+    <div class="signup__overlay"></div>
+  </div>
+  <div class="container__child signup__form" style="width:60%">
+    <form [formGroup]="homeForm" autocomplete="off">
+      	<div class="form-group">
+	        <label for="name">Name</label>
+	        <input class="form-control" type="text" formControlName="name" placeholder="Enter your name" />
+
+	        <span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+				<strong class='errVal'>Please enter your name.</strong>
+			</span>
+      	</div>
+
+      	<div class="form-group">
+	        <label for="username">Username</label>
+	        <input class="form-control" type="text" formControlName="username" placeholder="Enter username" />
+	        <span *ngIf="homeForm.controls.username.hasError('required') && homeForm.controls.username.touched">
+				<strong class='errVal'>Please enter username.</strong>
+			</span>
+      	</div>
+
+      	<div class="form-group">
+	        <label for="email">Email</label>
+	        <input class="form-control" type="text" formControlName="email" placeholder="Enter your email" />
+	        <span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+				<strong class='errVal'>Please enter email.</strong>
+			</span>
+      	</div>
+      	<div class="form-group">
+	        <label for="password">Password</label>
+	        <input class="form-control" type="password" formControlName="password"placeholder="Enter password" />
+	        <span *ngIf="homeForm.controls.password.hasError('required') && homeForm.controls.password.touched">
+				<strong class='errVal'>Please enter password.</strong>
+			</span>
+
+			<span *ngIf="homeForm.controls.password.hasError('minlength') && homeForm.controls.password.touched">
+				<strong class='errVal'>Password must be at least 6 characters long.</strong>
+			</span>
+      	</div>
+      	<div class="form-group">
+	        <label for="passwordRepeat">Repeat Password</label>
+	        <input class="form-control" type="password" formControlName="cpassword" placeholder="confirm password" />
+	        <span *ngIf="homeForm.controls.cpassword.hasError('required') && homeForm.controls.cpassword.touched">
+				<strong class='errVal'>Please repeat same password.</strong>
+			</span>
+      	</div>
+      	<div class="form-group subs" style="width:100%;" *ngIf="!valid || homeForm.invalid || homeForm.controls.cpassword.value != homeForm.controls.password.value">
+      		<h2 style=" color: #000; font-weight: bold; font-size: 17px;">
+      			Please Select Your Subscription Below
+      		</h2>
+			  <ul class="price" style="clear:both">
+			    <li class="header">Basic</li>
+			    <li class="grey">$ 9.99 For 1 Month</li>
+			    <li class="grey">
+			    	<button type="button" class="button" (click)="submit('9.99')">
+			    		Sign Up & Buy
+			    	</button>
+			    </li>
+			  </ul>
+			  <ul class="price">
+			    <li class="header">Pro</li>
+			    <li class="grey">$ 14.99 For 6 Months</li>
+			    <li class="grey">
+			    	<button type="button" class="button" (click)="submit('14.99')">
+			    		Sign Up & Buy
+			    	</button>
+			    </li>
+			  </ul>
+			  <ul class="price">
+			    <li class="header">Premium</li>
+			    <li class="grey">$ 19.99 For 1 Year</li>
+			    <li class="grey">
+			    	<button type="button" class="button" (click)="submit('19.99')">
+			    		Sign Up & Buy
+			    	</button>
+			    </li>
+			  </ul>
+			  
+			  	<span>
+					Already have account? 
+					<a href='http://3.136.84.42/admin/#/auth/login'>Login here</a>
+				</span>
+		</div>
+		<ngx-paypal [config]="payPalConfig" *ngIf="!homeForm.invalid && valid && homeForm.controls.cpassword.value == homeForm.controls.password.value"></ngx-paypal>
+
+      	<!-- <div class="m-t-lg" >
+	        <ul class="list-inline">
+	          <li>
+	            <button class="btn btn--form" type="submit" (click)="submit()"> Register</button>
+	          </li>
+	        </ul>
+      	</div> -->
+    </form>  
+  </div>
+</div>

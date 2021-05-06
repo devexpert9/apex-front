@@ -1,0 +1,26 @@
+
+
+body
+{
+	font-family: 'Poppins', sans-serif!important;
+}
+.owl-theme .owl-dots .owl-dot.active span {
+    width: 30px;
+    background: #add45c!important;
+}
+.owl-theme .owl-dots .owl-dot span {
+    margin: 3px;
+}
+.indx-slidr-sec .owl-theme .owl-nav.disabled+.owl-dots {
+    position: absolute;
+    z-index: 1;
+    bottom: 40px;
+    left: 0px;
+    right: 0px;
+}
+@media only screen and (max-width:767px)
+{
+.indx-slidr-sec .owl-theme .owl-nav.disabled+.owl-dots {
+    bottom: 5px;
+}	
+}	

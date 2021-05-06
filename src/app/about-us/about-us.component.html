@@ -1,0 +1,370 @@
+<ng-container *ngIf="isStaticPage == false">
+	<ng-container *ngIf="siteStatus != '1' && siteStatus != '2'">
+		<app-header>
+		</app-header>
+
+		<!-- ABout V1 -->
+		<div class="layoutVerson1" *ngIf="pageDataHome?.template == 'version1'"> 
+			<section class="indx-slidr-sec">
+				<div class="indx-slidr-img bg1">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-12 px-0">
+								<div class="indx-slidr-txt"  style="padding:0 0 0 25px">
+								    <img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt=""> 
+								    <label class="homeBannerText">
+								    	<div [innerHTML]="pageDataHome?.banner_text | safeHtml"></div>
+								    </label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="about-me-str">
+				<div class="container">
+					<div class="row" *ngIf='pageDataAbout != null'>
+						<div class="col-md-6 ">
+							<div class="cont-st-alb">
+								<div class="tlt-aboy-m new-trss"> 
+									<span class="txt-lits"> About Me</span>
+								</div>
+								<div [innerHTML]="pageDataAbout?.banner_text | safeHtml"></div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-12 order-lg-1">
+							<div class="higr-dlts">
+								<div class="row custom-mt-10 z-index-0">
+								  <div class="col-11 ml-auto mr-auto">
+									<img class="img-fluid rounded hgt-img" src="{{imageUrl}}{{pageDataAbout?.banner_image}}" alt="">
+								  </div>
+								</div>
+							</div>
+						  </div>
+					</div>
+
+					<div class="row" *ngIf='pageDataAbout == null' style="margin:0 0 150px 0;text-align: center;font-size: 20px;">
+						<div class="col-md-12" style="padding: 35px 0;background: #e3e3e3;">
+							Content Coming Soon.....
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- // about v1 -->
+
+		<!-- About V2 -->
+		<div class="layoutVerson2" *ngIf="pageDataHome?.template == 'version2'">
+			<section class="indx-slidr-sec innerPagers">
+				<div class="indx-slidr-img bg1">
+					<div class="container">
+						<div class="indx-slidr-txt">
+							<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt=""> 
+							<label class="homeBannerText">
+								<div [innerHTML]="pageDataHome?.banner_text | safeHtml" style="color:#fff"></div>
+							</label>
+							
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="about-me-str">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 offset-2">
+							<div class="cont-st-alb">
+								<div class="secHdng text-center" style="width:100%">
+									<!-- <h3>Some Facts About Me</h3> -->
+									<h1>About Us</h1>
+								</div>
+								<div *ngIf='pageDataAbout != null'>
+									<div class="higr-dlts">
+										<div class="row custom-mt-10 z-index-0">
+											<img class="img-fluid rounded hgt-img" src="{{imageUrl}}{{pageDataAbout?.banner_image}}" alt="">
+										</div>
+									</div>
+									<div [innerHTML]="pageDataAbout?.banner_text | safeHtml"></div>
+								</div>
+
+								<div class="row" *ngIf='pageDataAbout == null' style="margin:0 0 150px 0;text-align: center;font-size: 20px;">
+									<div class="col-md-12" style="padding: 35px 0;background: #e3e3e3;">
+										Content Coming Soon.....
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- end About V2 -->
+
+
+		<!-- About V3 -->
+		<div class="layoutVerson3" *ngIf="pageDataHome?.template == 'version3'">
+			<section class="indx-slidr-sec innerPagers">
+				<div class="indx-slidr-img bg1">
+					<div class="container">
+						<div class="indx-slidr-txt">
+							<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt="" style=" width: 200px!important; "> 
+							<h1 [innerHTML]="pageDataHome?.banner_text | safeHtml"></h1>
+							
+							<div class="secHdng secHdngLeft" style="width:100%">
+								<div>
+									<!-- <h3>Some Facts About Me</h3> -->
+									<h1>About Us</h1>
+								</div>
+								<div class="breadcrum">
+									<ul style="visibility: hidden;">
+										<li><a href="#">Home</a></li>
+										<li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></li>
+										<li>About Us</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="about-me-str">
+				<div class="container">
+					<div class="row" *ngIf='pageDataAbout != null'>
+						<div class="col-md-6">
+							<div class="cont-st-alb">
+								<div [innerHTML]="pageDataAbout?.banner_text | safeHtml"></div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="higr-dlts">
+								<div class="row custom-mt-10 z-index-0">
+									<img src="{{imageUrl}}{{pageDataAbout?.banner_image}}">
+								</div>
+							</div>				
+						</div>
+					</div>
+
+					<div class="row" *ngIf='pageDataAbout == null' style="margin:0 0 150px 0;text-align: center;font-size: 20px;">
+						<div class="col-md-12" style="padding: 35px 0;background: #e3e3e3;">
+							Content Coming Soon.....
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- // end About V3 -->
+
+
+		<!-- About V4 -->
+		<div class="layoutVerson4" *ngIf="pageDataHome?.template == 'version4'">
+			<section class="indx-slidr-sec innerPagers">
+				<div class="indx-slidr-img bg1">
+					<div class="container">
+						<div class="indx-slidr-txt">
+							<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt=""> 
+							<label class="homeBannerText">
+								<div [innerHTML]="pageDataHome?.banner_text | safeHtml"></div>
+							</label>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="about-me-str">
+				<div class="container">
+					<div class="secHdng secHdngLeft" style="width:100%">
+						<!-- <h3>Some Facts About Me</h3> -->
+						<h1>About Us</h1>
+					</div>
+					<div class="row" *ngIf='pageDataAbout != null'>
+						<div class="col-md-8">
+							<div class="cont-st-alb">
+								<div [innerHTML]="pageDataAbout?.banner_text | safeHtml"></div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="higr-dlts">
+								<div class="row custom-mt-10 z-index-0">
+									<img class="img-fluid rounded hgt-img" src="{{imageUrl}}{{pageDataAbout?.banner_image}}" alt="">
+								</div>
+							</div>				
+						</div>
+					</div>
+
+					<div class="row" *ngIf='pageDataAbout == null' style="margin:0 0 150px 0;text-align: center;font-size: 20px;">
+						<div class="col-md-12" style="padding: 35px 0;background: #e3e3e3;">
+							Content Coming Soon.....
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- // end About V4 -->
+
+		<app-footer>
+		</app-footer>
+	</ng-container>
+
+	<div *ngIf="siteStatus == '1'" style="float: left;width: 100%;text-align: center;height: 100%; background: #ffffff">
+	  <img src="assets/img/siteBlocked.png" style="width:48%">
+	</div>
+
+	<div *ngIf="siteStatus == '2'" style="float: left;width: 100%;text-align: center;height: 100%; background: #F5F5F5">
+	  <img src="assets/img/siteunder.jpg" style="width:48%">
+	</div>
+</ng-container>
+
+<ng-container *ngIf="isStaticPage == true">
+	<div class="wrapper mm-page mm-slideout" id="mm-0">
+		<app-header>
+		</app-header>
+		<!-- web about -->
+		<section class=" home-one homeslider home1-overlay">
+			<section class="inner_page_breadcrumb" style="z-index: 9;max-height:390px;">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="breadcrumb_content">
+								<h4 class="breadcrumb_title">About Us</h4>
+								<!-- <ol class="breadcrumb pt-0">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item active" aria-current="page">About Us</li>
+								</ol> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>  
+			
+		<!-- About Text Content -->
+		<section class="about-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-xl-7">
+						<div class="main-title">
+							<h2 class="mt0">
+								<!-- {{WebAboutData?.heading}} -->
+								Our Mission Is To Apex Insurance Group
+							</h2>
+						</div>
+						<div class="about_content">
+							<p class="large">Mauris ac consectetur ante, dapibus gravida tellus. Nullam aliquet eleifend dapibus. Cras sagittis, ex euismod lacinia tempor.</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis ligula eu lectus vulputate porttitor sed feugiat nunc. Mauris ac consectetur ante, dapibus gravida tellus. Nullam aliquet eleifend dapibus. Cras sagittis, ex euismod lacinia tempor, lectus orci elementum augue, eget auctor metus ante sit amet velit.</p>
+							<p>Maecenas quis viverra metus, et efficitur ligula. Nam congue augue et ex congue, sed luctus lectus congue. Integer convallis condimentum sem. Duis elementum tortor eget condimentum tempor. Praesent sollicitudin lectus ut pharetra pulvinar. Donec et libero ligula. Vivamus semper at orci at placerat.Placeat Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod libero amet, laborum qui nulla quae alias tempora. Mauris ac consectetur ante, dapibus gravida tellus. Nullam aliquet eleifend dapibus. Cras sagittis, ex euismod lacinia tempor.</p>
+							<p>Mauris ac consectetur ante, dapibus gravida tellus. Nullam aliquet eleifend dapibus. Cras sagittis, ex euismod lacinia tempor.</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-xl-5">
+						<div class="about_thumb">
+							<img class="img-fluid w100" src="./assets/images/about/1.jpg" alt="1.jpg" alt="1.jpg">
+							<!-- <a class="popup-youtube color-white" href="https://www.youtube.com/watch?v=R7xbhKIiw4Y"><i class="flaticon-play"></i></a> -->
+						</div>
+					</div>
+				</div>
+				<div class="row " style="margin-top:120px !important;">
+					<div class="col-lg-6 offset-lg-3">
+						<div class="main-title text-center">
+							<h2>Why Choose Us</h2>
+							<p>We provide full service at every step.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-lg-4 col-xl-4">
+						<div class="why_chose_us style2">
+							<div class="icon">
+								<span class="flaticon-high-five"></span>
+							</div>
+							<div class="details">
+								<h4>Agent Sign up</h4>
+								<p>Simple 1,2,3 and you are enrolled.</p>
+								<a href="https://www.apex-4u.com/admin/#/auth/register"><i class="fa fa-arrow-right "></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4 col-xl-4">
+						<div class="why_chose_us style2">
+							<div class="icon">
+								<span class="flaticon-home-1"></span>
+							</div>
+							<div class="details">
+								<h4>Manage Own Website</h4>
+								<p>Pick a template, make a few selections and done.</p>
+								<a href="https://www.apex-4u.com/admin/#/auth/register"><i class="fa fa-arrow-right "></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4 col-xl-4">
+						<div class="why_chose_us style2">
+							<div class="icon">
+								<span class="flaticon-profit"></span>
+							</div>
+							<div class="details">
+								<h4>Customer Contact</h4>
+								<p>Have any questions? Contact us for a quick response</p>
+								<a routerLink="/contact-us"><i class="fa fa-arrow-right "></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- <section id="property-search" class="property-search bg-img4">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 offset-lg-3">
+						<div class="search_smart_property text-center">
+							<h2>Cras sagittis, ex euismod lacinia tempora</h2>
+							<p>Aliquam dictum elit vitae mauris facilisis at dictum urna dignissim donec vel lectus vel felis.</p>
+							<button class="btn ssp_btn">Explore</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section> -->
+
+		<!-- Feature Properties -->
+			<section id="feature-property" class="feature-property bgc-f7">
+
+				<div class="container ovh">
+					<div class="row">
+						<div class="col-lg-6 offset-lg-3">
+							<div class="main-title text-center mb40">
+								<h6>Testimonials</h6>
+								<h2>What Our Agents Say</h2>
+								<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p> -->
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="feature_property_slider">
+								<owl-carousel-o [options]="customOptions">
+									<ng-template carouselSlide  >
+										<div class="feat_property testiParent">
+											<div class="thumb">
+												<img class="img-whp" src="./assets/images/team/3.jpg" alt="3.jpg">
+															<h5>David Walker</h5>
+															<p>Manager</p>
+											</div>
+											<div class="details">
+												<div class="tc_content" >
+													<p>
+																	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
+																</p>
+																<span class="rateStar">
+																	<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
+																</span>
+												</div>
+											</div>
+										</div>
+									</ng-template> 
+										
+								</owl-carousel-o>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		<!-- // web  -->
+	</div>
+</ng-container>

@@ -1,0 +1,193 @@
+<ng-container *ngIf="siteStatus != '1' && siteStatus != '2'">
+<app-header>
+</app-header>
+
+<!-- blog v1 -->
+<div class="layoutVerson1" *ngIf="pageDataHome?.template == 'version1'"> 
+	<section class="indx-slidr-sec">
+		<div class="indx-slidr-img bg1">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12 px-0">
+						<div class="indx-slidr-txt"  style="padding:0 0 0 25px">
+								<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt=""> 				
+
+							<label class="homeBannerText">
+								<div [innerHTML]="pageDataHome?.banner_text | safeHtml"></div>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="about-me-str">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="cont-blogs"  *ngIf='pageDataBlog != null'>
+						<div class="iimg-blgs-m" style="text-align:center;"> 
+							<img src="{{imageUrl}}{{pageDataBlog?.banner_image}}" style="width:40%" *ngIf='pageDataBlog != null'>
+						</div>
+						
+						<div [innerHTML]="pageDataBlog?.banner_text | safeHtml"></div>
+					</div>
+
+					<div class="cont-blogs" *ngIf='pageDataBlog == null' style="margin:0 0 150px 0;text-align:center;padding: 35px 0;font-size:20px;background: #e3e3e3;">
+						Content Coming Soon.....
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- // blog v2 -->
+
+
+<!-- Blog V2 -->
+<div class="layoutVerson2" *ngIf="pageDataHome?.template == 'version2'">
+	<section class="indx-slidr-sec innerPagers">
+		<div class="indx-slidr-img bg1">
+			<div class="container">
+				<div class="indx-slidr-txt">
+					<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt=""> 
+					<label class="homeBannerText">
+						<div [innerHTML]="pageDataHome?.banner_text | safeHtml" style="color:#fff"></div>
+					</label>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="about-me-str">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="cont-blogs" *ngIf='pageDataBlog != null'>
+						<div class="iimg-blgs-m" style="text-align:center;"> 
+							<img src="{{imageUrl}}{{pageDataBlog?.banner_image}}" style="width:40%"*ngIf='pageDataBlog != null'>
+						</div>
+						
+						<div [innerHTML]="pageDataBlog?.banner_text | safeHtml"></div>
+					</div>
+
+					<div class="cont-blogs" *ngIf='pageDataBlog == null' style="margin:0 0 150px 0;text-align:center;padding: 35px 0;font-size:20px;background: #e3e3e3;">
+						Content Coming Soon.....
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- // End Blog V2 -->
+
+<!-- Blog V3 -->
+<div class="layoutVerson3"  *ngIf="pageDataHome?.template == 'version3'">
+	<section class="indx-slidr-sec innerPagers">
+		<div class="indx-slidr-img bg1">
+			<div class="container">
+				<div class="indx-slidr-txt">
+					<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt="" style=" width: 200px!important; "> 
+					<h1 [innerHTML]="pageDataHome?.banner_text | safeHtml"></h1>
+						
+					<div class="secHdng secHdngLeft" style="width:100%">
+						<div>
+							<h3>Our Latest</h3>
+							<h1>Blog</h1>
+						</div>
+						<div class="breadcrum">
+							<ul style="visibility: hidden;">
+								<li><a href="#">Home</a></li>
+								<li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></li>
+								<li>Blog</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="about-me-str">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">	
+					<div class="cont-blogs" *ngIf='pageDataBlog != null'>
+						<div class="iimg-blgs-m" style="text-align: center;"> 
+							<img src="{{imageUrl}}{{pageDataBlog?.banner_image}}" style="width:40%" >
+						</div>
+						
+						<div [innerHTML]="pageDataBlog?.banner_text | safeHtml"></div>
+					</div>
+
+					<div class="cont-blogs" *ngIf='pageDataBlog == null' style="margin:0 0 150px 0;text-align:center;padding: 35px 0;font-size:20px;background: #e3e3e3;">
+						Content Coming Soon.....
+					</div>
+				</div>
+				<!-- <div class="col-md-5">
+					<div class="iimg-blgs-m"> 
+						<img src="assets/img/blog1img.svg">
+						<img src="assets/img/shape1.svg" class="shape1" alt="">
+					</div>	
+				</div> -->
+			</div>
+		</div>
+	</section>
+</div>
+<!-- // End Blog V3 -->
+
+<!-- Blog V4 -->
+<div class="layoutVerson4"  *ngIf="pageDataHome?.template == 'version4'">
+	<section class="indx-slidr-sec innerPagers">
+		<div class="indx-slidr-img bg1">
+			<div class="container">
+				<div class="indx-slidr-txt">
+					<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt=""> 
+					<label class="homeBannerText">
+						<div [innerHTML]="pageDataHome?.banner_text | safeHtml"></div>
+					</label>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="about-me-str">
+		<div class="container">
+			<div class="secHdng secHdngLeft" style="width:100%">
+				<h3>Our Latest</h3>
+				<h1>Blog</h1>
+			</div>
+			<div class="row">
+				<div class="col-md-12">	
+					<div class="cont-blogs col-md-12" *ngIf='pageDataBlog != null'>
+						<div class="iimg-blgs-m col-md-5" style="float:left" > 
+							<img src="{{imageUrl}}{{pageDataBlog?.banner_image}}">
+						</div>
+						
+						<div [innerHTML]="pageDataBlog?.banner_text | safeHtml" class=" col-md-7"  style="float:left"></div>
+					</div>
+
+					<div class="cont-blogs" *ngIf='pageDataBlog == null' style="margin:0 0 150px 0;text-align:center;padding: 35px 0;font-size:20px;background: #e3e3e3;">
+						Content Coming Soon.....
+					</div>
+				</div>
+				<!-- <div class="col-md-4">
+					<div class="iimg-blgs-m"> 
+						<img src="assets/img/blog.jpg">
+					</div>	
+				</div> -->
+			</div>
+		</div>
+	</section>
+</div>
+<!-- // End Blog V4 -->
+
+<app-footer>
+</app-footer>
+</ng-container>
+
+<div *ngIf="siteStatus == '1'" style="float: left;width: 100%;text-align: center;height: 100%; background: #ffffff">
+  <img src="assets/img/siteBlocked.png" style="width:48%">
+</div>
+
+<div *ngIf="siteStatus == '2'" style="float: left;width: 100%;text-align: center;height: 100%; background: #F5F5F5">
+  <img src="assets/img/siteunder.jpg" style="width:48%">
+</div>

@@ -1,0 +1,41 @@
+.main{
+	background-image: url('../../assets/img/slide-bg.jpg');
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.logo{
+	position: absolute;
+    top: 33%;
+    margin: auto;
+    left: 45%;
+}
+
+.loader {
+	position: absolute;
+	top:43%;
+	left:46.5%;
+    border: 7px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 7px solid #a4cd49;
+    width: 65px;
+    height: 65px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

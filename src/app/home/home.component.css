@@ -1,0 +1,54 @@
+.topBannerImg{
+    float: left;
+    width: 420px!important;
+}
+.homeBannerText{
+	float: left;
+    margin: 0 0 0 21px;
+    font-size: 85px;
+    font-weight: 900;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.homeBannerText span{
+    float: left;
+    margin: 0 0 0 21px;
+    font-size: 85px;
+    font-weight: 900;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.errVal {
+    color: red;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.form-cut input, .form-cut select, .form-cut textarea {
+	margin-bottom: 1px;
+}
+.headHead{
+    width: 100%;
+}
+
+.layoutVerson3 .indx-insurce-sec.fstsec{
+    margin-top:0;
+}
+
+.headHead:after{
+    left:0!important;
+    top:40px!important;
+}
+
+#successmsg{
+    text-align: center;
+    float: left;
+    width: 100%;
+    color: black;
+    padding: 3px 0;
+    background: #c3efc3;
+    margin: 0 0 9px 0;
+    display: none;
+}

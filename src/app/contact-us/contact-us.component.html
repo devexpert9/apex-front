@@ -1,0 +1,971 @@
+
+<ng-container *ngIf="isStaticPage == false">
+
+<ng-container *ngIf="siteStatus != '1' && siteStatus != '2'">
+<app-header>
+</app-header>
+<!-- contact v1 -->
+<div class="layoutVerson1"  *ngIf="pageDataHome?.template == 'version1'"> 
+	<section class="indx-slidr-sec">
+		<div class="indx-slidr-img bg1">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12 px-0">
+						<div class="indx-slidr-txt"  style="padding:0 0 0 25px">
+							<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt=""> 
+							<label class="homeBannerText">
+								<div [innerHTML]="pageDataHome?.banner_text | safeHtml"></div>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="about-me-str contc-frm">
+		<div class="container">
+			<div class="top-iconsa">
+				<div class="row" *ngIf='pageDataContact != null'>	
+					<div class="col-md-3">
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-map-marker"></i> </span>
+							{{pageDataContact?.address}}, {{pageDataUsers?.city}}, {{pageDataUsers?.state}}, {{pageDataContact?.zipcode}}
+						</div>
+					</div>	
+
+					<div class="col-md-3">
+						<div class="box-octr cntr-box">
+							<span class="ocu-icon"> <i class="fa fa-phone"></i> </span>
+							<h4 class="namr-s cnt-nme"> </h4>
+							{{pageDataContact?.phone}}
+						</div>
+					</div>	
+					<div class="col-md-3">
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-envelope"></i> </span>
+							<!-- <h4 class="namr-s cnt-nme"> Email Address </h4> -->
+							<p style="white-space: normal; word-break: break-all;">
+								{{pageDataContact?.email}}
+							</p>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-calendar"></i> </span>
+							<!-- <h4 class="namr-s cnt-nme"> Calendar</h4> -->
+							My calendar, click <a href="{{pageDataContact?.calendar_url}}" target="_blank" class="clic-hrs"> HERE. </a>
+						</div>
+					</div>				
+				</div>
+			</div>	
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="img-conta img-dts-vs">
+						<img class="img-contax" src="assets/img/bg-05.jpg" alt="">
+						<!--h5 class="clndr-tra"> My calendar, click <a href="#" class="clic-hrs"> HERE. </a>  </h5-->
+					</div>
+				</div>
+				<div class="col-md-7 cont-dtra">
+					<div class="cont-st-alb">
+						<div class="tlt-aboy-m ttl-contact"> 
+							<h3> Contact Us</h3>
+							<span class="ovrt-tra"> Contact</span>
+						</div>
+						<form class="form-cut" [formGroup]="homeForm">
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name"/>
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number"/>
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+								</div>
+ 
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance" style=" background: none; border-bottom: 2px solid #dedede; border-top: none; border-left: none; border-right: none; margin: 26px 0 0 0;">
+										<option value="">Select Insurance</option>
+										<option value="Life">
+										Life</option>
+										<option value="Long-term care">
+										Long-term care</option>
+										<option value="Disability">
+										Disability</option>
+										<option value="Medicare">
+										Medicare</option>
+										<option value="Final Expense">
+										Final Expense</option>
+										<option value="Property & Causalty">
+										Property & Causalty</option>
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject"/>
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center" style="margin-top:20px;">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+						<div class="my-clnt-scl">
+							<!--span class="cont-cls"> My calendar, click <a href="#" class="clic-hrs"> HERE. </a> </span-->
+							<ul class="socil-icya">
+								<li [style.visibility]="pageDataContact?.facebook_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.facebook_url != ' '">
+									<a href="{{pageDataContact?.facebook_url}}" target="_blank"> 
+										<i class="fa fa-facebook"></i> 
+									</a> 
+								</li>
+								
+								<li [style.visibility]="pageDataContact?.instagram_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.instagram_url !=  ' '"> 
+									<a href="{{pageDataContact?.instagram_url}}" target="_blank" class="insta-bg"> <i class="fa fa-instagram"></i> </a> 
+								</li>
+
+								<li [style.visibility]="pageDataContact?.linkedin_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.linkedin_url != ' '"> 
+									<a href="{{pageDataContact?.linkedin_url}}" target="_blank" class="lind-bg"> <i class="fa fa-linkedin"></i> </a> 
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<!-- // contact v1 -->
+
+
+<!-- Contact V2 -->
+<div class="layoutVerson2" *ngIf="pageDataHome?.template == 'version2'">
+	<section class="indx-slidr-sec innerPagers">
+		<div class="indx-slidr-img bg1">
+			<div class="container">
+				<div class="indx-slidr-txt">
+					<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt=""> 
+					<label class="homeBannerText">
+						<div [innerHTML]="pageDataHome?.banner_text | safeHtml" style="color:#fff"></div>
+					</label>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="about-me-str contc-frm">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5" *ngIf='pageDataContact != null'>
+					<div class="img-conta img-dts-vs">
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-user"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<span>{{pageDataContact?.name}}</span>
+							</h4>
+						</div>
+
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-map-marker"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<!-- Post Address --> 
+								<span>{{pageDataContact?.address}}, {{pageDataContact?.zipcode}}</span></h4>
+							
+						</div>
+						<div class="box-octr cntr-box">
+							<span class="ocu-icon"> <i class="fa fa-phone"></i> </span>
+							<h4 class="namr-s cnt-nme"> <span>{{pageDataContact?.phone}}</span></h4>
+							
+						</div>
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-envelope"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<!-- Email Address --> 
+								<span>{{pageDataContact?.email}}</span></h4>
+							
+						</div>
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-calendar"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<!-- Calendar --> 
+								<span>
+									My calendar, click 
+									<a href="{{pageDataContact?.calendar_url}}" target="_blank" class="clic-hrs">
+										HERE.
+									</a>
+								</span>
+							</h4>
+							 
+						</div>
+					</div>
+				</div>
+			  	
+			  	<div class="col-md-7 cont-dtra" *ngIf='pageDataContact != null'>
+					<div class="secHdng secHdngLeft" style="width:100%">
+						<h3>Get in touch</h3>
+						<h1>Contact Us</h1>
+					</div>
+					<div class="cont-st-alb p-0">
+						<form class="form-cut" [formGroup]="homeForm">
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name"/>
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number"/>
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+								</div>
+ 
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance">
+										<option value="">Select Insurance</option>
+										<option value="Life">Life</option>
+										<option value="Illness">Illness</option>
+										<option value="Disability">Disability</option>
+										<option value="Senior">Senior</option>
+										<option value="Accident">Accident</option>
+										<option value="Property Casuality">Property Casuality</option>
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject"/>
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center" style="margin-top:20px;">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="col-md-12 cont-dtra" *ngIf='pageDataContact == null'>
+					<div class="secHdng secHdngLeft" style="width:100%">
+						<h3>Get in touch</h3>
+						<h1>Contact Us</h1>
+					</div>
+					<div class="cont-st-alb p-0">
+						<form class="form-cut" [formGroup]="homeForm">
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name"/>
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number"/>
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+								</div>
+ 
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance" style="height: 55px;    width: 100%;border: none;border-bottom: 2px solid #dedede;margin-bottom: 22px;transition: all .3s ease-out 0s;font-size: 15px;font-weight: 500;color: #0a1026;border-radius: 0;background: 0 0;padding-left: 0;">
+										<option value="">Select Insurance</option>
+										<option value="Life">Life</option>
+										<option value="Illness">Illness</option>
+										<option value="Disability">Disability</option>
+										<option value="Senior">Senior</option>
+										<option value="Accident">Accident</option>
+										<option value="Property Casuality">Property Casuality</option>
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject"/>
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- // end Contact V2 -->
+
+
+<!-- Contact V3 -->
+<div class="layoutVerson3"  *ngIf="pageDataHome?.template == 'version3'">
+	<section class="indx-slidr-sec innerPagers">
+		<div class="indx-slidr-img bg1">
+			<div class="container">
+				<div class="indx-slidr-txt">
+					<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt="" style=" width: 200px!important; "> 
+					<h1 [innerHTML]="pageDataHome?.banner_text | safeHtml"></h1>
+					
+					<div class="secHdng secHdngLeft" style="width:100%">
+						<div>
+							<h3>Get in touch</h3>
+							<h1>Contact Us</h1>
+						</div>
+						<div class="breadcrum">
+							<ul style="visibility: hidden;">
+								<li><a href="#">Home</a></li>
+								<li><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></li>
+								<li>Contact Us</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="about-me-str contc-frm">
+		<div class="container">
+			<div class="row">
+
+			  	<div class="col-md-7 cont-dtra" *ngIf='pageDataContact != null'>
+					<div class="cont-st-alb p-0">
+						<form class="form-cut" [formGroup]="homeForm">
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name"/>
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number"/>
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+								</div>
+ 
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance">
+										<option value="">Select Insurance</option>
+										<option value="Life">Life</option>
+										<option value="Illness">Illness</option>
+										<option value="Disability">Disability</option>
+										<option value="Senior">Senior</option>
+										<option value="Accident">Accident</option>
+										<option value="Property Casuality">Property Casuality</option>
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject"/>
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center" style="margin-top:20px;">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+
+			  	<div class="col-md-12 cont-dtra" *ngIf='pageDataContact == null'>
+					<div class="cont-st-alb p-0">
+						<form class="form-cut" [formGroup]="homeForm">
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name"/>
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number"/>
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+								</div>
+ 
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance" style="height: 55px;    width: 100%;border: none;border-bottom: 2px solid #dedede;margin-bottom: 22px;transition: all .3s ease-out 0s;font-size: 15px;font-weight: 500;color: #0a1026;border-radius: 0;background: 0 0;padding-left: 0;">
+										<option value="">Select Insurance</option>
+										<option value="Life">Life</option>
+										<option value="Illness">Illness</option>
+										<option value="Disability">Disability</option>
+										<option value="Senior">Senior</option>
+										<option value="Accident">Accident</option>
+										<option value="Property Casuality">Property Casuality</option>
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject"/>
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="col-lg-5" *ngIf='pageDataContact != null'>
+					<div class="img-conta img-dts-vs">
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-user"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<span>{{pageDataContact?.name}}</span>
+							</h4>
+						</div>
+
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-map-marker"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<!-- Post Address --> 
+								<span>{{pageDataContact?.address}}, {{pageDataContact?.zipcode}}</span></h4>
+							
+						</div>
+						<div class="box-octr cntr-box">
+							<span class="ocu-icon"> <i class="fa fa-phone"></i> </span>
+							<h4 class="namr-s cnt-nme"> <span>{{pageDataContact?.phone}}</span></h4>
+							
+						</div>
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-envelope"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<!-- Email Address --> 
+								<span>{{pageDataContact?.email}}</span></h4>
+							
+						</div>
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-calendar"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<!-- Calendar --> 
+								<span>My calendar, click <a href="{{pageDataContact?.calendar_url}}" target="_blank" class="clic-hrs" style="color:#fff"> HERE. </a></span> </h4>
+							 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- // end Contact V3 -->
+
+
+<!-- Contact V4 -->
+<div class="layoutVerson4"  *ngIf="pageDataHome?.template == 'version4'">
+	<section class="indx-slidr-sec innerPagers">
+		<div class="indx-slidr-img bg1">
+			<div class="container">
+				<div class="indx-slidr-txt">
+					<img class="topBannerImg" src="{{imageUrl}}{{pageDataHome?.banner_image}}" alt=""> 
+					<label class="homeBannerText">
+						<div [innerHTML]="pageDataHome?.banner_text | safeHtml"></div>
+					</label>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="about-me-str contc-frm">
+		<div class="container">
+			<div class="secHdng secHdngLeft" style="width:100%">
+				<h3>Get in touch</h3>
+				<h1>Contact Us</h1>
+			</div>
+			<div class="row">
+				<div class="col-md-7 cont-dtra" *ngIf='pageDataContact != null'>
+					<div class="cont-st-alb p-0">
+						<form class="form-cut" [formGroup]="homeForm">
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name"/>
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number"/>
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number.</strong>
+									</span>
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+								</div>
+ 
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance">
+										<option value="">Select Insurance</option>
+										<option value="Life">Life</option>
+										<option value="Illness">Illness</option>
+										<option value="Disability">Disability</option>
+										<option value="Senior">Senior</option>
+										<option value="Accident">Accident</option>
+										<option value="Property Casuality">Property Casuality</option>
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject"/>
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center" style="margin-top:20px;">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="col-md-12 cont-dtra" *ngIf='pageDataContact == null'>
+					<div class="cont-st-alb p-0">
+						<form class="form-cut" [formGroup]="homeForm">
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name"/>
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number"/>
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number.</strong>
+									</span>
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+								</div>
+ 
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance" style="height: 55px;    width: 100%;border: none;border-bottom: 2px solid #dedede;margin-bottom: 22px;transition: all .3s ease-out 0s;font-size: 15px;font-weight: 500;color: #0a1026;border-radius: 0;background: 0 0;padding-left: 0;">
+										<option value="">Select Insurance</option>
+										<option value="Life">Life</option>
+										<option value="Illness">Illness</option>
+										<option value="Disability">Disability</option>
+										<option value="Senior">Senior</option>
+										<option value="Accident">Accident</option>
+										<option value="Property Casuality">Property Casuality</option>
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject"/>
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center" style="margin-top:20px;">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="col-lg-5" *ngIf='pageDataContact != null'>
+					<div class="img-conta img-dts-vs">
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-user"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<span>{{pageDataContact?.name}}</span>
+							</h4>
+						</div>
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-map-marker"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<!-- Post Address --> 
+								<span>{{pageDataContact?.address}}, {{pageDataContact?.zipcode}}</span></h4>
+							
+						</div>
+						<div class="box-octr cntr-box">
+							<span class="ocu-icon"> <i class="fa fa-phone"></i> </span>
+							<h4 class="namr-s cnt-nme"> <span>{{pageDataContact?.phone}}</span></h4>
+							
+						</div>
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-envelope"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<!-- Email Address --> 
+								<span>{{pageDataContact?.email}}</span></h4>
+							
+						</div>
+						<div class="box-octr">
+							<span class="ocu-icon"> <i class="fa fa-calendar"></i> </span>
+							<h4 class="namr-s cnt-nme"> 
+								<!-- Calendar --> 
+								<span>My calendar, click <a href="{{pageDataContact?.calendar_url}}" target="_blank" class="clic-hrs" style="color:#fff"> HERE. </a></span> </h4>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- // end Contact V4 -->
+
+
+<app-footer>
+</app-footer>
+</ng-container>
+
+<div *ngIf="siteStatus == '1'" style="float: left;width: 100%;text-align: center;height: 100%; background: #ffffff">
+  <img src="assets/img/siteBlocked.png" style="width:48%">
+</div>
+
+<div *ngIf="siteStatus == '2'" style="float: left;width: 100%;text-align: center;height: 100%; background: #F5F5F5">
+  <img src="assets/img/siteunder.jpg" style="width:48%">
+</div>
+</ng-container>
+
+<ng-container *ngIf="isStaticPage == true">
+	<div class="wrapper mm-page mm-slideout" id="mm-0">
+		<app-header>
+		</app-header>
+
+		<!-- web contact -->
+		<section class=" home-one homeslider home1-overlay">
+			<section class="inner_page_breadcrumb" style="z-index: 9;max-height:390px;">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="breadcrumb_content">
+								<h4 class="breadcrumb_title">Contact Us</h4>
+								<!-- <ol class="breadcrumb pt-0">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+								</ol> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section> 
+
+		<!-- Our Contact -->
+		<section class="our-contact pb0 bgc-f7">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-7 col-xl-8" style="margin:0 0 40px 0">
+						<div class="form_grid">
+							<h4 class="mb5">Send Us An Email</h4>
+							<!-- <p [innerHTML]='WebContactData?.desc'></p> -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In gravida quis libero eleifend ornare. Maecenas mattis enim at arcu feugiat, sit amet blandit nisl iaculis. Donec lacus odio, malesuada eu libero sit amet, congue aliquam leo. In hac habitasse platea dictumst.</p>
+
+							<form class="contact_form form-cut" [formGroup]="homeForm">
+								<div class="row">
+									<div class="col-lg-6">
+										<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name"/>
+
+										<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+											<strong class='errVal'>Please enter name.</strong>
+										</span>
+									</div>
+									<div class="col-lg-6">
+										<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"/>
+
+										<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+											<strong class='errVal'>Please enter email.</strong>
+										</span>
+
+										<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+											<strong class='errVal'>Please enter correct email.</strong>
+										</span>
+									</div>
+
+									<div class="col-lg-6">
+										<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number"/>
+
+										<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+											<strong class='errVal'>Please enter contact number.</strong>
+										</span>
+
+										<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+											<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+										</span>
+									</div>
+	 
+									<div class="col-lg-6">
+										<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject"/>
+
+										<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+											<strong class='errVal'>Please enter subject.</strong>
+										</span>
+									</div>
+									<div class="col-12">
+										<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+										<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+											<strong class='errVal'>Please enter message.</strong>
+										</span>
+									</div>
+									<div class="col-12 text-center">
+										<button class="main-btn" (click)="submit()" style="border:0px">
+											<i class="fa fa-paper-plane"></i> Submit
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-lg-5 col-xl-4">
+						<div class="contact_localtion">
+							<h4>Contact Us</h4>
+							<div class="content_list">
+								<h5>Address</h5>
+								<!-- <p>
+									<i class="fa fa-map-marker" aria-hidden="true"></i>
+									{{WebContactData?.address}}
+								</p> -->
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In gravida quis libero eleifend ornare. habitasse platea dictumst.</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In gravida quis libero eleifend ornare. habitasse platea dictumst.</p>
+							</div>
+							<div class="content_list">
+								<h5>Phone</h5>
+								<p>
+									<i class="fa fa-phone-square" aria-hidden="true"></i>
+									<!-- {{WebContactData?.phone}} -->
+
+								(000) 111-2321
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- // end -->
+	</div>
+</ng-container>

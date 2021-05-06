@@ -1,0 +1,1295 @@
+<ng-container *ngIf="siteStatus != '1' && siteStatus != '2' && isStaticPage == false">
+<app-header>
+</app-header>
+
+<!-- Home V1 -->
+	<div class="layoutVerson1"  *ngIf="pageData?.template == 'version1'">
+		<!-- Modal -->
+		<div class="modal fade" id="lifePopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      	<div class="modal-header">
+			        	<h5 class="modal-title" id="exampleModalLabel">
+			        		Send Contact request
+			        	</h5>
+			        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          	<span aria-hidden="true">&times;</span>
+			        	</button>
+			      	</div>
+			      	<div class="modal-body">
+			        	<form class="form-cut" [formGroup]="homeForm">
+			        		<span id='successmsg'>
+			        			Contact request has been sent successfully
+			        		</span>
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name"/>
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number"/>
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance" style="height: 55px;    width: 100%;border: none;border-bottom: 2px solid #dedede;margin:0px;transition: all .3s ease-out 0s;font-size: 15px;font-weight: 500;color: #0a1026;border-radius: 0;background: 0 0;padding-left: 0;">
+										<option value="">Select Insurance</option>
+										<option value="Life">
+										Life</option>
+										<option value="Long-term care">
+										Long-term care</option>
+										<option value="Disability">
+										Disability</option>
+										<option value="Medicare">
+										Medicare</option>
+										<option value="Final Expense">
+										Final Expense</option>
+										<option value="Property & Causalty">
+										Property & Causalty</option>
+										
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject"/>
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center" style="margin-top:10px;">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+			      	</div>
+			    </div>
+		  	</div>
+		</div> 
+
+		<section class="indx-slidr-sec">
+			<div class="indx-slidr-img bg1">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-12 px-0">
+							<div class="indx-slidr-txt" style="padding:0 0 0 25px">
+								<img class="topBannerImg" src="{{imageUrl}}{{pageData?.banner_image}}" alt=""> 
+								<label class="homeBannerText">
+									<div [innerHTML]="pageData?.banner_text | safeHtml" style="font-size:85px"></div>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>				
+		<section class="indx-insurce-sec pots-tr">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-6 d-flex flex-wrap align-items-center">
+						<div class="insurce-scl-txt" style="position:relative ;width:100%"> 
+							<div class="ins-mn-hed" style="width:100%">
+								<h1 style="margin:0">Get an Insurance</h1>
+								<h4 style="margin:0 0 0 5px">Quote</h4>
+							</div>
+							<div class="ins-mn-tb" style="width:100%">
+								<owl-carousel-o [options]="customOptions">
+									<ng-template carouselSlide>
+										<div class="ul-list">				
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Life")'>
+												<span><img src="assets/img/icon1.png" alt=""></span>
+												<a  href="javascript:void(0)">
+													Life
+												</a>
+											</div>
+
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Long-term care")'>
+												<span><img src="assets/img/icon2.png" alt=""></span> <a href="javascript:void(0)">Long-term care</a>
+											</div>
+
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Disability")'>
+												<span><img src="assets/img/icon3.png" alt=""></span> <a href="javascript:void(0)">Disability</a>
+											</div>
+
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Medicare")'>
+												<span><img src="assets/img/icon4.png" alt=""></span><a href="javascript:void(0)"> Medicare</a>
+											</div>
+
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Final Expense")'>
+												<span><img src="assets/img/icon5.png" alt=""></span><a href="javascript:void(0)"> Final Expense</a>
+											</div>
+
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Property & Causalty")'>
+												<span><img src="assets/img/icon6.png" alt=""></span><a href="javascript:void(0)"> Property & Causalty</a>
+											</div> 
+										</div> 
+									</ng-template> 
+									<!-- <ng-template carouselSlide>
+										<div class="ul-list">				
+											<div class="lsiy-div"><span><img src="assets/img/icon1.png" alt=""></span><a href="javascript:void(0)">Life</a></div> 
+											<div class="lsiy-div"><span><img src="assets/img/icon2.png" alt=""></span> <a href="javascript:void(0)">Illness</a></div> 
+											<div class="lsiy-div"><span><img src="assets/img/icon3.png" alt=""></span> <a href="javascript:void(0)">Disability</a></div> 
+											<div class="lsiy-div"><span><img src="assets/img/icon4.png" alt=""></span><a href="javascript:void(0)"> Senior</a></div> 
+											<div class="lsiy-div"><span><img src="assets/img/icon5.png" alt=""></span><a href="javascript:void(0)"> Accident</a></div> 
+											<div class="lsiy-div"><span><img src="assets/img/icon6.png" alt=""></span><a href="javascript:void(0)"> Property  <br> Casuality</a></div> 
+										</div> 
+									</ng-template>  --> 	
+								</owl-carousel-o>				
+							</div> 
+						</div>
+					</div>
+					<div class="col-lg-6" style="margin:55px 0 0 0">
+						<div class="insurce-scl-img">
+							<img src="assets/img/11.jpeg" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>		
+		<section class="indx-ofr-sec new-ds-sit">
+		<span class="img-shades"><img src="assets/img/shade2.jpg"> </span>   
+			<div class="container-fluid">
+				<div class="row">
+
+					<ng-container *ngIf="maintext != null ">
+						<div class="col-lg-12 px-0" *ngIf="maintext?.banner_image != null " style="padding-bottom: 20px">
+							<div class="self-srvce-sec">
+								<div class="row mx-0">
+									<div class="col-lg-6 col-md-6 px-0 order-2 order-sm-2 order-md-1 order-lg-1">
+										<div class="ofr-mn-img" style="text-align: center;">
+											<img src="https://www.apex-4u.com:8080/images/{{maintext?.banner_image}}" alt="" style="width: 400px!important;height: 400px!important;">
+										</div>
+									</div>
+
+									<div class="col-lg-6 col-md-6 px-0 order-2 order-sm-2 order-md-1 order-lg-1">
+										<div class="ofr-mn-cont left-sde">
+											<span [innerHtml]="maintext?.banner_text | safeHtml"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-12 px-0" *ngIf="maintext?.banner_image == null " style="padding-bottom: 20px">
+							<div class="self-srvce-sec">
+								<div class="row mx-0">
+									<div class="col-lg-12 col-md-12 px-0 order-2 order-sm-2 order-md-1 order-lg-1">
+										<div class="ofr-mn-cont left-sde" style="padding-left: 121px">
+											<span [innerHtml]="maintext?.banner_text | safeHtml"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</ng-container>
+
+					<ng-container *ngFor="let item of sections">
+						<div class="col-lg-12 px-0" *ngIf="item?.status == '1' && item?.isChecked == true" style="padding-bottom: 20px">
+							<div class="self-srvce-sec">
+								<div class="row mx-0">
+									<div class="col-lg-6 col-md-6 px-0 order-2 order-sm-2 order-md-1 order-lg-1">
+										<div class="ofr-mn-img" style="text-align: center;">
+											<img src="assets/img/2.jpg" alt="" *ngIf="item?.image == ''" style="width: 400px!important;height: 400px!important;">
+											<img src="https://www.apex-4u.com:8080/images/{{item?.image}}" alt="" *ngIf="item?.image != ''" style="width: 400px!important;height: 400px!important;">
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 px-0 d-flex flex-wrap align-items-center order-1 order-sm-1 order-md-2 order-lg-2">
+										<div class="ofr-mn-cont left-sde">
+											<h3 class='headHead'>
+												{{item?.name}}	
+											</h3>
+											
+											<span [innerHtml]="item?.message | safeHtml"></span>
+											<ng-container *ngIf="item?.url != '' && item?.text != ''">
+												<div *ngIf="item?.url.includes('http')">
+													<a href="{{item?.url}}" target="_BLANK" >
+														<i class="fa fa-chain-broken" aria-hidden="true"></i> 
+														{{item?.text}}
+													</a>
+												</div>
+
+												<div *ngIf="!item?.url.includes('http')">
+													<a href="http://{{item?.url}}" target="_BLANK" >
+														<i class="fa fa-chain-broken" aria-hidden="true"></i> 
+														{{item?.text}}
+													</a>
+												</div>
+											</ng-container>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</ng-container>
+					<!-- <div class="col-lg-12 px-0" *ngIf="conditionalSections.staus == 1">
+						<div class="disability-csulty">
+							<div class="row mx-0">
+								<div class="col-lg-6 col-md-6 px-0 d-flex flex-wrap align-items-center">
+									<div class="ofr-mn-cont right-sde">
+										<h3 class='headHead'>
+											{{conditionalSections?.disabilityHeading}}	
+										</h3>
+
+										<span [innerHtml]="selectedCmsData?.disability_content"></span>
+										
+										<div *ngIf="pageData?.disability_url.includes('http')">
+											<a href="{{pageData?.disability_url}}" target="_BLANK">
+												<i class="fa fa-chain-broken" aria-hidden="true"></i> {{pageData?.disability_urltext}}
+											</a>
+										</div>
+
+										<div *ngIf="!pageData?.disability_url.includes('http')">
+											<a href="http://{{pageData?.disability_url}}" target="_BLANK">
+												<i class="fa fa-chain-broken" aria-hidden="true"></i> {{pageData?.disability_urltext}}
+											</a>
+										</div>
+
+										
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6 px-0">
+									<div class="ofr-mn-img">
+										<img src="assets/img/2.jpg" alt="" *ngIf="selectedCmsData?.disability_image == ''">
+										<img src="https://www.apex-4u.com:8080/images/{{selectedCmsData?.disability_image}}" alt="" *ngIf="selectedCmsData?.disability_image != ''">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12 px-0" *ngIf="conditionalSections.propHeadingCheckbox">
+						<div class="prprty-csulty">
+							<div class="col-lg-12 pt-5">
+								<div class="buttercup">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="ofr-mn-hed">
+												<h4>Buttercup Insurance</h4>
+												<h1>What We Offer</h1>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mx-0">
+								<div class="col-lg-6 col-md-6 px-0 order-2 order-sm-2 order-md-1 order-lg-1">
+									<div class="ofr-mn-img">
+										<img src="assets/img/2.jpg" alt="" *ngIf="selectedCmsData?.property_casuality_image == ''">
+										<img src="https://www.apex-4u.com:8080/images/{{selectedCmsData?.property_casuality_image}}" alt="" *ngIf="selectedCmsData?.property_casuality_image != ''">
+
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6 px-0 d-flex flex-wrap align-items-center order-1 order-sm-1 order-md-2 order-lg-2">
+									<div class="ofr-mn-cont left-sde">
+										<h3 class='headHead'>
+											{{conditionalSections?.propHeading}}
+										</h3>
+
+										<span [innerHtml]="selectedCmsData?.property_casuality_content"></span>
+										
+										<div *ngIf="pageData?.casuality_url.includes('http')">
+											<a href="{{pageData?.casuality_url}}" target="_BLANK">
+												<i class="fa fa-chain-broken" aria-hidden="true"></i> {{pageData?.casuality_urltext}}
+											</a>
+										</div>
+
+										<div *ngIf="!pageData?.casuality_url.includes('http')">
+											<a href="http://{{pageData?.casuality_url}}" target="_BLANK">
+												<i class="fa fa-chain-broken" aria-hidden="true"></i> {{pageData?.casuality_urltext}}
+											</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</section>
+	</div>
+<!-- // home verison 1 -->
+
+<!-- home verison 2 -->
+	<div class="layoutVerson2"  *ngIf="pageData?.template == 'version2'">
+		<!-- Modal -->
+		<div class="modal fade" id="lifePopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      	<div class="modal-header">
+			        	<h5 class="modal-title" id="exampleModalLabel">Send Contact request</h5>
+			        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          	<span aria-hidden="true">&times;</span>
+			        	</button>
+			      	</div>
+			      	<div class="modal-body">
+			        	<form class="form-cut" [formGroup]="homeForm">
+			        		<span id='successmsg'>
+			        			Contact request has been sent successfully
+			        		</span>
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name"/>
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number" style="margin:6px 0 10px 0" />
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance" style="height: 55px;    width: 100%;border: none;border-bottom: 2px solid #dedede;margin:0px;transition: all .3s ease-out 0s;font-size: 15px;font-weight: 500;color: #0a1026;border-radius: 0;background: 0 0;padding-left: 0;">
+										<option value="">Select Insurance</option>
+										<option value="Life">
+										Life</option>
+										<option value="Long-term care">
+										Long-term care</option>
+										<option value="Disability">
+										Disability</option>
+										<option value="Medicare">
+										Medicare</option>
+										<option value="Final Expense">
+										Final Expense</option>
+										<option value="Property & Causalty">
+										Property & Causalty</option>
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject" style="margin: 0 0 10px 0" />
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center" style="margin-top:10px;">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+			      	</div>
+			    </div>
+		  	</div>
+		</div> 
+		<section class="indx-slidr-sec">
+			<div class="indx-slidr-img bg1">
+				<div class="container">
+					<div class="indx-slidr-txt">
+						<!-- <img class="clientImg" src="assets/img/client.jpg" alt="">
+						<img class="txtImg" src="assets/img/header-bnr2.png" alt=""> -->
+						<img class="topBannerImg" src="{{imageUrl}}{{pageData?.banner_image}}" alt=""> 
+						<label class="homeBannerText">
+							<div [innerHTML]="pageData?.banner_text | safeHtml" style="color:#fff"></div>
+						</label>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="indx-insurce-sec pots-tr">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 d-flex flex-wrap align-items-center">
+						<div class="insurce-scl-txt" style="position:relative ;width:100%"> 
+							<div class="secHdng text-center" style="width:100%">
+								<h3>Get an Insurance</h3>
+								<h1>Quote</h1>
+							</div>
+							<div class="ins-mn-tb" style="width:100%">
+								<div class="ul-list row">
+									<div class="col-md-4">
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Life")'>
+											<span>
+												<img src="assets/img/planting.svg" alt="">
+											</span>
+											<a href="javascript:void(0)">Life</a>
+										</div>
+
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Long-term care")'>
+											<span><img src="assets/img/stethoscope.svg" alt=""></span> <a href="javascript:void(0)">Long-term care</a>
+										</div> 
+									</div>			
+									<div class="col-md-4">
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Disability")'>
+											<span><img src="assets/img/wheelchair.svg" alt=""></span> <a href="javascript:void(0)">Disability</a>
+										</div> 
+										
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Medicare")'>
+											<span><img src="assets/img/old-man-walking.svg" alt=""></span><a href="javascript:void(0)"> Medicare</a>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Final Expense")'>
+											<span><img src="assets/img/ambulance.svg" alt=""></span><a href="javascript:void(0)"> Final Expense</a>
+										</div>
+										
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Property & Causalty")'>
+											<span><img src="assets/img/real-estate.svg" alt=""></span><a href="javascript:void(0)"> Property & Causalty</a>
+										</div>
+									</div> 
+								</div>
+								<owl-carousel-o [options]="customOptions">	
+								</owl-carousel-o>				
+							</div> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<ng-container *ngIf="maintext != null ">
+			<ng-container>
+				<section class="indx-ofr-sec new-ds-sit" style="display:inline-block;">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="self-srvce-sec selfSer">
+									<div class="row mx-0">
+										<div class="col-lg-4 col-md-4">
+											<div class="ofr-mn-img" style="text-align: center;">
+												<img src="https://www.apex-4u.com:8080/images/{{maintext?.banner_image}}" alt="" style="width: 400px!important;height: 400px!important;">
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 d-flex  align-items-center" >
+											<div class="ofr-mn-cont left-sde">
+												<span [innerHtml]="maintext?.banner_text | safeHtml"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</ng-container>
+
+			<div class="col-lg-12 px-0" *ngIf="maintext?.banner_image == null " style="padding-bottom: 20px; display:inline-block;">
+				<div class="self-srvce-sec">
+					<div class="row mx-0">
+						<div class="col-lg-12 col-md-12 px-0 order-2 order-sm-2 order-md-1 order-lg-1">
+							<div class="ofr-mn-cont left-sde" style="padding-left: 96px">
+								<span [innerHtml]="maintext?.banner_text | safeHtml"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-container>
+
+		<ng-container *ngFor="let item of sections">
+			<section class="indx-ofr-sec new-ds-sit" *ngIf="item?.status == '1' && item?.isChecked == true">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="self-srvce-sec selfSer">
+								<div class="row mx-0">
+									<div class="col-lg-4 col-md-4">
+										<div class="ofr-mn-img" style="text-align: center;">
+											<img src="assets/img/2.jpg" alt="" *ngIf="item?.image == ''" style="width: 400px!important;height: 400px!important;">
+											<img src="https://www.apex-4u.com:8080/images/{{item?.image}}" alt="" *ngIf="item?.image != ''" style="width: 400px!important;height: 400px!important;">
+
+										</div>
+									</div>
+									<div class="col-lg-8 col-md-8 d-flex  align-items-center" >
+										<div class="ofr-mn-cont left-sde">
+											<div class="secHdng secHdngLeft">
+												<h1>
+													{{item?.name}}
+												</h1>
+											</div>
+
+											<span [innerHtml]="item?.message | safeHtml"></span>
+											<ng-container *ngIf="item?.text != '' && item?.url != ''">
+												<div *ngIf="item?.url.includes('http')">
+													<a href="{{item?.url}}" target="_BLANK">
+														<i class="fa fa-chain-broken" aria-hidden="true"></i> 
+														{{item?.text}}
+													</a>
+												</div>
+
+												<div *ngIf="!item?.url.includes('http')">
+													<a href="http://{{item?.url}}" target="_BLANK">
+														<i class="fa fa-chain-broken" aria-hidden="true"></i> 
+														{{item?.text}}
+													</a>
+												</div>
+											</ng-container>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</ng-container>
+		
+	</div>
+<!-- // home verison 2 -->
+
+<!-- home verison 3 -->
+	<div class="layoutVerson3"  *ngIf="pageData?.template == 'version3'">
+		<!-- Modal -->
+		<div class="modal fade" id="lifePopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index:999999">
+		  	<div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      	<div class="modal-header">
+			        	<h5 class="modal-title" id="exampleModalLabel">Send Contact request</h5>
+			        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          	<span aria-hidden="true">&times;</span>
+			        	</button>
+			      	</div>
+			      	<div class="modal-body">
+			        	<form class="form-cut" [formGroup]="homeForm">
+			        		<span id='successmsg'>
+			        			Contact request has been sent successfully
+			        		</span>
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name" style="margin:0 0 10px 0" />
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email"  style="margin:0 0 10px 0"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number" style="margin:0 0 10px 0"/>
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number.</strong>
+									</span>
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance" style="height: 50px;width: 100%;margin-top: 0;border-bottom: 1px solid #dedede;margin: 0;transition: all .3s ease-out 0s;font-size: 15px;font-weight: 500;color: #0a1026;border-radius: 0;background: 0 0;padding-left: 0;">
+										<option value="">Select Insurance</option>
+										<option value="Life">
+										Life</option>
+										<option value="Long-term care">
+										Long-term care</option>
+										<option value="Disability">
+										Disability</option>
+										<option value="Medicare">
+										Medicare</option>
+										<option value="Final Expense">
+										Final Expense</option>
+										<option value="Property & Causalty">
+										Property & Causalty</option>
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject" style="margin:0 0 10px 0"/>
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center" style="margin-top:10px;">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+			      	</div>
+			    </div>
+		  	</div>
+		</div> 
+		<section class="indx-slidr-sec" id="bg">
+			<!-- {{addBackground(pageData)}} -->
+			<div class="indx-slidr-img bg1">
+				<div class="container">
+					<div class="indx-slidr-txt">
+						<!-- <h1>Buttercup Insurance</h1> -->
+						<img class="topBannerImg" src="{{imageUrl}}{{pageData?.banner_image}}" alt="" style=" width: 200px!important; "> 
+						<h1 [innerHTML]="pageData?.banner_text | safeHtml" style="width:100%;text-align: center;"></h1>
+						<h3>Coverage for those who need it!</h3>
+						<span class="btn btn-primary btn-getintouch" (click)="openUrl('/contact-us')">Get in Touch</span>
+					</div>
+				</div>
+				<div class="fotr-socl-icn">
+					<ul>
+						<li [style.visibility]="pageDataContact?.facebook_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.facebook_url != ' '">
+							<a href="{{pageDataContact?.facebook_url}}" target="_blank"> 
+								<i class="fa fa-facebook"></i> 
+							</a> 
+						</li>
+						
+						<li [style.visibility]="pageDataContact?.instagram_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.instagram_url !=  ' '"> 
+							<a href="{{pageDataContact?.instagram_url}}" target="_blank" class="insta-bg"> <i class="fa fa-instagram"></i> </a> 
+						</li>
+
+						<li [style.visibility]="pageDataContact?.linkedin_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.linkedin_url != ' '"> 
+							<a href="{{pageDataContact?.linkedin_url}}" target="_blank" class="lind-bg"> <i class="fa fa-linkedin"></i> </a> 
+						</li>
+					</ul>
+				</div> 
+			</div>
+		</section>
+
+		<section class="indx-insurce-sec pots-tr fstsec" style="z-index:6666">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 d-flex flex-wrap align-items-center">
+						<div class="insurce-scl-txt" style="position:relative ;width:100%">
+							<div class="ins-mn-tb" style="width:100%">
+								<owl-carousel-o [options]="customOptions">
+									<ng-template carouselSlide>
+										<div class="ul-list">				
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Life")'>
+												<span><img src="assets/img/planting.svg" alt=""></span><a href="javascript:void(0)">Life</a>
+											</div> 
+											
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Long-term care")'>
+												<span><img src="assets/img/stethoscope.svg" alt=""></span> <a href="javascript:void(0)">Long-term care</a>
+											</div> 
+											
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Disability")'>
+												<span><img src="assets/img/wheelchair.svg" alt=""></span> <a href="javascript:void(0)">Disability</a>
+											</div>
+										</div>
+									</ng-template>
+									<ng-template carouselSlide>
+										<div class="ul-list">
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Medicare")'>
+												<span><img src="assets/img/old-man-walking.svg" alt=""></span><a href="javascript:void(0)"> Medicare</a>
+											</div> 
+											
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Final Expense")'>
+												<span><img src="assets/img/ambulance.svg" alt=""></span><a href="javascript:void(0)"> Final Expense</a>
+											</div>
+											
+											<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Property & Causalty")'>
+												<span><img src="assets/img/real-estate.svg" alt=""></span><a href="javascript:void(0)"> Property & Causalty</a></div> 
+										</div>
+									</ng-template>  	
+								</owl-carousel-o>				
+							</div> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<ng-container *ngIf="maintext != null ">
+			<ng-container>
+				<section class="indx-ofr-sec new-ds-sit" style='display:inline-block;'>
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="self-srvce-sec selfSer">
+									<div class="row">
+										<div class="col-md-7 d-flex  align-items-center">
+											<div class="ofr-mn-cont left-sde">
+												<span [innerHtml]="maintext?.banner_text | safeHtml"></span>
+											</div>
+										</div>
+										<div class="col-md-5">
+											<div class="ofr-mn-img">
+												<img src="https://www.apex-4u.com:8080/images/{{maintext?.banner_image}}" alt="" style="width: 400px!important;height: 400px!important;">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</ng-container>
+
+			<div class="col-lg-12 px-0" *ngIf="maintext?.banner_image == null " style="padding-bottom: 20px; display: inline-block;">
+				<div class="self-srvce-sec">
+					<div class="row mx-0">
+						<div class="col-lg-12 col-md-12 px-0 order-2 order-sm-2 order-md-1 order-lg-1">
+							<div class="ofr-mn-cont left-sde" style="padding-left: 88px;padding-top:50px">
+								<span [innerHtml]="maintext?.banner_text | safeHtml"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-container>
+
+		<ng-container *ngFor="let item of sections">
+			<section class="indx-ofr-sec new-ds-sit"  *ngIf="item?.status == '1' && item?.isChecked == true">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="self-srvce-sec selfSer">
+								<div class="row">
+									<div class="col-md-7 d-flex  align-items-center">
+										<div class="ofr-mn-cont left-sde">
+											<div class="secHdng secHdngLeft">
+												<h1>
+													{{item?.name}}
+												</h1>
+												<span class="shadowHdng">{{item?.name}}</span>
+											</div>
+
+											<span [innerHtml]="item?.message | safeHtml"></span>
+											<ng-container *ngIf="item?.text != '' && item?.url != ''">
+												<div *ngIf="item?.url.includes('http')">
+													<a href="{{item?.url}}" target="_BLANK">
+														<i class="fa fa-chain-broken" aria-hidden="true"></i> 
+														{{item?.text}}
+													</a>
+												</div>
+
+												<div *ngIf="!item?.url.includes('http')">
+													<a href="http://{{item?.url}}" target="_BLANK">
+														<i class="fa fa-chain-broken" aria-hidden="true"></i> 
+														{{item?.text}}
+													</a>
+												</div>
+											</ng-container>
+										</div>
+									</div>
+									<div class="col-md-5">
+										<div class="ofr-mn-img">
+
+											<img src="assets/img/2.jpg" alt="" *ngIf="item?.image == ''" style="width: 400px!important;height: 400px!important;">
+											<img src="https://www.apex-4u.com:8080/images/{{item?.image}}" alt="" *ngIf="item?.image != ''" style="width: 400px!important;height: 400px!important;">
+
+											<img src="assets/img/shape1.svg" class="shape1" alt="">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</ng-container>
+
+		
+	</div>
+<!-- // end home verison 3 -->
+
+<!-- home verison 4 -->
+	<div class="layoutVerson4"  *ngIf="pageData?.template == 'version4'">
+		<!-- Modal -->
+		<div class="modal fade" id="lifePopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      	<div class="modal-header">
+			        	<h5 class="modal-title" id="exampleModalLabel">Send Contact request</h5>
+			        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          	<span aria-hidden="true">&times;</span>
+			        	</button>
+			      	</div>
+			      	<div class="modal-body">
+			        	<form class="form-cut" [formGroup]="homeForm">
+			        		<span id='successmsg'>
+			        			Contact request has been sent successfully
+			        		</span>
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name" style="margin:0 0 10px 0" />
+
+									<span *ngIf="homeForm.controls.name.hasError('required') && homeForm.controls.name.touched">
+										<strong class='errVal'>Please enter name.</strong>
+									</span>
+								</div>
+								<div class="col-lg-6">
+									<input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Your Email" style="margin:0 0 10px 0"/>
+
+									<span *ngIf="homeForm.controls.email.hasError('required') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter email.</strong>
+									</span>
+
+									<span *ngIf="homeForm.controls.email.hasError('pattern') && homeForm.controls.email.touched">
+										<strong class='errVal'>Please enter correct email.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter Contact Number" style="margin:0 0 10px 0"/>
+
+									<span *ngIf="homeForm.controls.phone.hasError('required') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter contact number.</strong>
+									</span>
+									
+									<span *ngIf="homeForm.controls.phone.hasError('pattern') && homeForm.controls.phone.touched">
+										<strong class='errVal'>Please enter correct contact number. (eg: (xxx) xxx-xxxx)</strong>
+									</span>
+									
+								</div>
+
+								<div class="col-lg-6">
+									<select class="form-control" id="insurance" formControlName="insurance" style="height: 50px;width: 100%;border: none;border-bottom: 2px solid #dedede;margin: 0;transition: all .3s ease-out 0s;font-size: 15px;font-weight: 500;color: #0a1026;border-radius: 0;background: 0 0;padding-left: 0;">
+										<option value="">Select Insurance</option>
+										<option value="Life">
+										Life</option>
+										<option value="Long-term care">
+										Long-term care</option>
+										<option value="Disability">
+										Disability</option>
+										<option value="Medicare">
+										Medicare</option>
+										<option value="Final Expense">
+										Final Expense</option>
+										<option value="Property & Causalty">
+										Property & Causalty</option>
+									</select>
+
+									<span *ngIf="homeForm.controls.insurance.hasError('required') && homeForm.controls.insurance.touched">
+										<strong class='errVal'>Please select insurance.</strong>
+									</span>
+								</div>
+
+								<div class="col-lg-12">
+									<input type="text" class="form-control" id="subject" formControlName="subject" placeholder="Enter Subject" style="margin:0 0 10px 0"/>
+
+									<span *ngIf="homeForm.controls.subject.hasError('required') && homeForm.controls.subject.touched">
+										<strong class='errVal'>Please enter subject.</strong>
+									</span>
+								</div>
+								<div class="col-12">
+									<textarea placeholder="Your Message" class="form-control" id="message" formControlName="message"></textarea>
+
+									<span *ngIf="homeForm.controls.message.hasError('required') && homeForm.controls.message.touched">
+										<strong class='errVal'>Please enter message.</strong>
+									</span>
+								</div>
+								<div class="col-12 text-center" style="margin-top:10px;">
+									<button class="main-btn" (click)="submit()">
+										<i class="fa fa-paper-plane"></i> Submit
+									</button>
+								</div>
+							</div>
+						</form>
+			      	</div>
+			    </div>
+		  	</div>
+		</div> 
+		<section class="indx-slidr-sec">
+			<div class="indx-slidr-img bg1">
+				<div class="container">
+					<div class="indx-slidr-txt">
+						<!-- <img class="clientImg" src="assets/img/client.jpg" alt="">
+						<img class="txtImg" src="assets/img/header-bnr3.png" alt=""> -->
+						<img class="topBannerImg" src="{{imageUrl}}{{pageData?.banner_image}}" alt=""> 
+						<label class="homeBannerText">
+							<div [innerHTML]="pageData?.banner_text | safeHtml"></div>
+						</label>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="indx-insurce-sec pots-tr fstsec">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 d-flex flex-wrap align-items-center">
+						<div class="insurce-scl-txt" style="position:relative ;width:100%"> 
+							<div class="secHdng text-center text-white" style="width:100%">
+								<h3>Get an Insurance</h3>
+								<h1>Quote</h1>
+							</div>
+							<div class="ins-mn-tb" style="width:100%">
+								<div class="ul-list row">
+									<div class="col-md-4">
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Life")'>
+											<span><img src="assets/img/planting.svg" alt=""></span><a href="javascript:void(0)">Life</a></div> 
+										
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Long-term care")'><span><img src="assets/img/stethoscope.svg" alt=""></span> <a href="javascript:void(0)">Long-term care</a></div> 
+									</div>			
+									<div class="col-md-4">
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Disability")'><span><img src="assets/img/wheelchair.svg" alt=""></span> <a href="javascript:void(0)">Disability</a></div> 
+										
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Medicare")'>
+											<span><img src="assets/img/old-man-walking.svg" alt=""></span><a href="javascript:void(0)"> Medicare</a></div>
+									</div>
+									<div class="col-md-4">
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Final Expense")'><span><img src="assets/img/ambulance.svg" alt=""></span><a href="javascript:void(0)"> Final Expense</a></div>
+										
+										<div class="lsiy-div" data-toggle="modal" data-target="#lifePopup" (click)='selectInsurance("Property & Causalty")'>
+											<span><img src="assets/img/real-estate.svg" alt=""></span><a href="javascript:void(0)"> Property & Causalty</a></div>
+									</div> 
+								</div>
+								<owl-carousel-o [options]="customOptions">
+								</owl-carousel-o>				
+							</div> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<ng-container *ngIf="maintext != null ">
+			<ng-container>
+				<section class="indx-ofr-sec new-ds-sit" *ngIf="maintext?.banner_image != null " style="padding-bottom: 20px;display:inline-block;">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="self-srvce-sec selfSer">
+									<div class="row">
+										<div class="col-lg-8 col-md-8 d-flex  align-items-center">
+											<div class="ofr-mn-cont left-sde">
+												<span [innerHtml]="maintext?.banner_text | safeHtml"></span>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4">
+											<div class="ofr-mn-img">
+												<img src="https://www.apex-4u.com:8080/images/{{maintext?.banner_image}}" alt="" style="width: 400px!important;height: 400px!important;">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</ng-container>
+			<!-- <div class="col-lg-12 px-0" *ngIf="maintext?.banner_image != null " style="padding-bottom: 20px;display:inline-block;">
+				<div class="self-srvce-sec selfSer">
+					<div class="row mx-0">
+						<div class="col-lg-8 col-md-8 px-0 order-2 order-sm-2 order-md-1 order-lg-1">
+							<div class="ofr-mn-cont left-sde">
+								<span [innerHtml]="maintext?.banner_text | safeHtml"></span>
+							</div>
+						</div>
+
+						<div class="col-lg-4 col-md-4">
+							<div class="ofr-mn-img">
+								<img src="https://www.apex-4u.com:8080/images/{{maintext?.banner_image}}" alt="" style="width: 400px!important;height: 400px!important;">
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div> -->
+
+			<div class="col-lg-12 px-0" *ngIf="maintext?.banner_image == null " style="display: inline-block;">
+				<div class="self-srvce-sec">
+					<div class="row mx-0">
+						<div class="col-lg-12 col-md-12 px-0 order-2 order-sm-2 order-md-1 order-lg-1">
+							<div class="ofr-mn-cont left-sde" style="padding:60px 0 0 87px">
+								<span [innerHtml]="maintext?.banner_text | safeHtml"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-container>
+
+		<ng-container *ngFor="let item of sections; let i = index;">
+			<section class="indx-ofr-sec new-ds-sit"  *ngIf="item?.status == '1' && item?.isChecked == true">
+					<!-- <span class="img-shades"><img src="assets/img/shade2.jpg"> </span>    -->
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="self-srvce-sec selfSer">
+									<div class="row">
+										<div class="col-lg-8 col-md-8 d-flex  align-items-center">
+											<div class="ofr-mn-cont left-sde">
+												<div class="secHdng secHdngLeft">
+													<h1>
+														{{item?.name}}
+													</h1>
+												</div>
+												
+												<span [innerHtml]="item?.message | safeHtml"></span>
+												<ng-container *ngIf="item?.text != '' && item?.url != ''">
+												<div *ngIf="item?.url.includes('http')">
+													<a href="{{item?.url}}" target="_BLANK">
+														<i class="fa fa-chain-broken" aria-hidden="true"></i> 
+														{{item?.text}}
+													</a>
+												</div>
+
+												<div *ngIf="!item?.url.includes('http')">
+													<a href="http://{{item?.url}}" target="_BLANK">
+														<i class="fa fa-chain-broken" aria-hidden="true"></i> 
+														{{item?.text}}
+													</a>
+												</div>
+											</ng-container>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4">
+											<div class="ofr-mn-img">
+												<img src="assets/img/2.jpg" alt="" *ngIf="item?.image == ''" style="width: 400px!important;height: 400px!important;">
+												<img src="https://www.apex-4u.com:8080/images/{{item?.image}}" alt="" *ngIf="item?.image != ''" style="width: 400px!important;height: 400px!important;">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+			</section>
+		</ng-container>
+
+	</div>
+<!-- // end home verison 4 -->
+
+
+
+<app-footer></app-footer>
+</ng-container>
+
+<div *ngIf="siteStatus == '1' && isStaticPage == false" style="float: left;width: 100%;text-align: center;height: 100%; background: #ffffff">
+  <img src="assets/img/siteBlocked.png" style="width:48%">
+</div>
+
+<div *ngIf="siteStatus == '2' && isStaticPage == false" style="float: left;width: 100%;text-align: center;height: 100%; background: #F5F5F5">
+  <img src="assets/img/siteunder.jpg" style="width:48%">
+</div>
+
+
+<!-- WEB HOME PAGE CODE ------------------------------------>
+<ng-container *ngIf="isStaticPage == true">
+	<div class="wrapper mm-page mm-slideout" id="mm-0">
+		<app-header>
+		</app-header>
+		
+		<section class=" home-one homeslider home1-overlay">
+			<div id="myCarousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active"  style="background-image: url(./assets/images/banner.jpg);">
+						<div class="container">
+							<div class="row posr">
+								<div class="col-lg-12 p-0">
+									<div class="home_content">
+										<div class="home-text">
+											<h2 class="fz30 mb-3">
+											APEX INSURANCE GROUP</h2>
+											<p>BUSINESS IN A BOX</p>
+											<h6>Designed to take you from Agent to Entrepreneur</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</section> 
+
+		<!-- Why Chose Us -->
+		<section id="why-chose" class="whychose_us ">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 offset-lg-3">
+						<div class="main-title text-center">
+							<h6>How It Works</h6>
+							<p>Purchase a subscription, select a template, add your data. It is that simple.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-lg-4 col-xl-4">
+						<div class="why_chose_us">
+							<div class="icon">
+								<span class="flaticon-login"></span>
+							</div>
+							<div class="details">
+								<h4>Agent Sign up</h4>
+								<p>
+									Jump to our enrollment page. Select your subscription and get started.
+								</p>
+								<a href="https://www.apex-4u.com/admin/#/auth/register"><i class="fa fa-arrow-right "></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4 col-xl-4">
+						<div class="why_chose_us">
+							<div class="icon">
+								<span class="flaticon-profit"></span>
+							</div>
+							<div class="details">
+								<h4>Manage Own Website</h4>
+								<p>Select a template, make a few changes and you are in business.</p>
+								<a href="https://www.apex-4u.com/admin/#/auth/register"><i class="fa fa-arrow-right "></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4 col-xl-4">
+						<div class="why_chose_us">
+							<div class="icon">
+								<span class="flaticon-user-1"></span>
+							</div>
+							<div class="details">
+								<h4>Agent Support</h4>
+								<p>Have an issue, click here.</p>
+								<a routerLink="/contact-us"><i class="fa fa-arrow-right "></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Feature Properties -->
+		<section id="feature-property" class="feature-property bgc-f7">
+
+			<div class="container ovh">
+				<div class="row">
+					<div class="col-lg-6 offset-lg-3">
+						<div class="main-title text-center mb40">
+							<h6>Testimonials</h6>
+							<h2>What Our Agents Say</h2>
+							<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p> -->
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="feature_property_slider">
+							<owl-carousel-o [options]="customOptions">
+								<ng-template carouselSlide  *ngFor="let testimonial of testimonials;">
+									<div class="feat_property testiParent">
+										<div class="thumb">
+											<img class="img-whp" src="https://www.apex-4u.com:8080/images/{{testimonial?.image}}" alt="3.jpg">
+											<h5 style="text-align:center">{{testimonial?.name}}</h5>
+											<p>
+												<a href='http://{{testimonial?.website}}' target="_BLANK">
+													{{testimonial?.website}}
+												</a>
+											</p>
+										</div>
+										<div class="details">
+											<div class="tc_content" [innerHTML]='testimonial?.message'>
+												<span class="rateStar">
+													<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+								</ng-template> 
+									
+							</owl-carousel-o>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- About Text Content -->
+		<section class="about-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 offset-lg-3">
+						<div class="main-title text-center">
+							<h6>Security & Privacy</h6>
+							<h2 class="mt0">{{securityPrivacy?.heading}}</h2>
+							<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-xl-5">
+						<div class="about_thumb">
+							<img class="img-fluid w100 aboutimg" style=" " src="{{baseUrl}}{{securityPrivacy?.image}}" alt="1.jpg">
+
+						</div>
+					</div>
+					<div class="col-lg-8 col-xl-7">
+						<div class="about_content" [innerHTML]='securityPrivacy?.content'>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<app-footer>
+		</app-footer>
+	</div>
+</ng-container>

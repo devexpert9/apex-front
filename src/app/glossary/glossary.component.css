@@ -1,0 +1,79 @@
+.about-me-str .custom-mt-10{
+	margin:20px 0 0;
+}
+.GlossaryTable{
+	width: 100%;
+}
+.GlossaryTable table{
+	width: 100%;
+	background:#fff; 
+	float: left;
+}
+.GlossaryTable table thead{
+	background: #333; 
+}
+.GlossaryTable table thead th{
+	color: #fff; 
+}
+.GlossaryTable table td, .GlossaryTable table th{
+	padding:20px; 
+	border-left: 1px solid #eee;
+}
+.GlossaryTable table td:last-child, .GlossaryTable table th:last-child{
+	border-right: 1px solid #eee;
+}
+.GlossaryTable table th:first-child{
+	min-width: 250px;
+}
+.GlossaryTable table td h4{
+	font-size: 17px;
+	font-weight: 600 !important;
+	margin:0;
+}
+.GlossaryTable table p{
+	margin:0;
+}
+.GlossaryTable table td{
+	border-bottom:1px solid #eee;
+}
+.GlossaryTable table td:first-child{
+	background:#f1f1f1;
+	border-color: #e6e5e5;
+}
+
+.topBannerImg{
+    float: left;
+    width: 420px!important;
+}
+.homeBannerText{
+	float: left;
+    margin: 0 0 0 21px;
+    font-size: 85px;
+    font-weight: 900;
+    text-align: center;
+    text-transform: capitalize;
+}
+.about-me-str .custom-mt-10{
+	margin:20px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+.topBannerImg{
+    float: left;
+    width: 420px!important;
+}
+.homeBannerText{
+	float: left;
+    margin: 0 0 0 21px;
+    font-size: 85px;
+    font-weight: 900;
+    text-align: center;
+    text-transform: capitalize;
+}

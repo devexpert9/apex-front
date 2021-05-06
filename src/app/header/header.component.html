@@ -1,0 +1,263 @@
+  <ng-container *ngIf="isStaticSite == false">  
+    <div *ngIf="siteBlocked == 'yes'" style="float: left;width: 100%;text-align: center;height: 100%; background: #ffffff">
+      <img src="assets/img/siteBlocked.png" style="width:48%;">
+    </div>
+
+    <div *ngIf="sitePending == 'yes'" style="float: left;width: 100%;text-align: center;height: 100%; background: #F5F5F5">
+      <img src="assets/img/siteunder.jpg" style="width:48%">
+    </div>
+
+  
+    <header class="header-sec" *ngIf="pageData?.template == 'version1'">
+      <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- <a class="navbar-brand" href="javascript:void(0);" (click)="openUrl('/home')">
+          <img src="assets/img/footer-logo.png">
+        </a>  -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/home'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/home')">Home</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/blog'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/blog')">Blog</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/glossary')">Glossary</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/about-us'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/about-us')">About Us</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/privacy'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/privacy')">privacy & Security</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/contact-us'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/contact-us')">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    </header>
+
+  <!-- Header Version 2 -->
+    <header class="header-sec version2" *ngIf="pageData?.template == 'version2'">
+      <div class="container">
+       <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- <a class="navbar-brand" href="javascript:void(0);" (click)="openUrl('/home')"><img src="../assets/img/white-logo.png"></a>  -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/home'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/home')">Home</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/blog'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/blog')">Blog</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/glossary')">Glossary</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/about-us'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/about-us')">About Us</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/privacy'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/privacy')">privacy & Security</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/contact-us'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/contact-us')">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+          <div class="fotr-socl-icn">
+              <ul>
+                <li [style.visibility]="pageDataContact?.facebook_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.facebook_url != ' '">
+                  <a href="{{pageDataContact?.facebook_url}}" target="_blank"> 
+                    <i class="fa fa-facebook"></i> 
+                  </a> 
+                </li>
+                
+                <li [style.visibility]="pageDataContact?.instagram_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.instagram_url !=  ' '"> 
+                  <a href="{{pageDataContact?.instagram_url}}" target="_blank" class="insta-bg"> <i class="fa fa-instagram"></i> </a> 
+                </li>
+
+                <li [style.visibility]="pageDataContact?.linkedin_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.linkedin_url != ' '"> 
+                  <a href="{{pageDataContact?.linkedin_url}}" target="_blank" class="lind-bg"> <i class="fa fa-linkedin"></i> </a> 
+                </li>
+              </ul>
+          </div> 
+      </div>
+    </header>
+  <!-- // end header version 2 -->
+
+  <!-- header version 3 -->
+    <header class="header-sec version3" *ngIf="pageData?.template == 'version3'">
+      <div class="container">
+       <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- <a class="navbar-brand" href="javascript:void(0);" (click)="openUrl('/home')"><img src="assets/img/white-logo.png"></a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/home'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/home')">Home</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/blog'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/blog')">Blog</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/glossary')">Glossary</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/about-us'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/about-us')">About Us</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/privacy'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/privacy')">privacy & Security</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/contact-us'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/contact-us')">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+        
+      </div>
+    </header>
+  <!-- // header version 3 -->
+
+  <!-- header version 4 -->
+    <header class="header-sec version4" *ngIf="pageData?.template == 'version4'">
+      <div class="container">
+       <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- <a class="navbar-brand" href="javascript:void(0);" (click)="openUrl('/home')"><img src="assets/img/footer-logo.png"></a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/home'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/home')">Home</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/blog'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/blog')">Blog</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/glossary')">Glossary</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/about-us'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/about-us')">About Us</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/privacy'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/privacy')">privacy & Security</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': selectedItem == '/contact-us'}">
+              <a class="nav-link" href="javascript:void(0);" (click)="openUrl('/contact-us')">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+        <div class="fotr-socl-icn">
+          <ul>
+            <li [style.visibility]="pageDataContact?.facebook_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.facebook_url != ' '">
+              <a href="{{pageDataContact?.facebook_url}}" target="_blank"> 
+                <i class="fa fa-facebook"></i> 
+              </a> 
+            </li>
+            
+            <li [style.visibility]="pageDataContact?.instagram_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.instagram_url !=  ' '"> 
+              <a href="{{pageDataContact?.instagram_url}}" target="_blank" class="insta-bg"> <i class="fa fa-instagram"></i> </a> 
+            </li>
+
+            <li [style.visibility]="pageDataContact?.linkedin_url ? 'visible' : 'hidden'" *ngIf="pageDataContact?.linkedin_url != ' '"> 
+              <a href="{{pageDataContact?.linkedin_url}}" target="_blank" class="lind-bg"> <i class="fa fa-linkedin"></i> </a> 
+            </li>
+          </ul>
+        </div> 
+      </div>
+    </header>
+  <!-- // end header version 4 -->
+<!-- </ng-container> -->
+</ng-container>
+
+
+
+<ng-container *ngIf="isStaticSite == true">
+    <header class="header-nav menu_style_home_one navbar-scrolltofixed stricky main-menu" #myTopElement>
+      <div class="container p0">
+        <!--  Responsive Menu -->
+        <nav>
+          <!-- Menu Toggle btn-->
+          <div class="menu-toggle">
+            <img class="nav_logo_img img-fluid" src="./assets/images/logo.png" alt="Apex">
+            <button type="button" id="menu-btn">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <a href="javascript:void(0)" class="navbar_brand float-left dn-smd">
+            <img class="logo1 img-fluid" src="./assets/images/logo.png" alt="header-logo2.png">
+            <img class="logo2 img-fluid" src="./assets/images/logo.png" alt="header-logo2.png">
+
+          </a>
+          <!-- Responsive Menu -->
+
+          <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal" >
+            <li class="navlink"   [ngClass]="{'active':page === '/home'}">
+            <a href="javascript:void(0)" routerLink="/web/home"><span class="title">Home </span></a>
+          </li>
+          <li class="navlink" [ngClass]="{'active':page === '/about-us'}">
+            <a href="javascript:void(0)" routerLink="/web/about-us">
+              <span class="title">About Us</span>
+            </a>    
+          </li>
+          <li class="navlink" [ngClass]="{'active':page === '/contact-us'}">
+            <a href="javascript:void(0)" routerLink="/web/contact-us">
+              <span class="title">Contact Us</span>
+            </a>
+          </li>
+          <li style="width: 40px;"></li>
+            <li class="list-inline-item add_listing">
+              <a href="https://www.apex-4u.com/admin/#/auth/login">
+                <span class="dn-lg actv">Login</span>
+              </a>
+            </li>
+            <li class="list-inline-item add_listing btn-signup">
+              <a href="https://www.apex-4u.com/admin/#/auth/register">
+                <span class="dn-lg">Signup</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div>
+      <span style="font-size:30px;cursor:pointer;z-index: 9999;position: absolute;padding: 10px 20px;" (click)="openNav()" class="mobile">&#9776;</span>
+       <div class="main_logo_home2 text-center" style="z-index: 999;position: relative;">
+            <img class="nav_logo_img img-fluid mt-2" width="70" src="./assets/images/logo.png" alt="Apex">
+          </div>
+    </div>
+    
+    <div id="mySidenav" class="sidenav" style="z-index: 99999;">
+      <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+      <a routerLink="/web/home">Home</a>
+      <a routerLink="/web/about-us">About Us1</a>
+      <a routerLink="/web/contact-us">Contact Us</a>
+      <a href="https://www.apex-4u.com/admin/#/auth/login">Login</a>
+      <a href="https://www.apex-4u.com/admin/#/auth/register">Sign Up</a>
+    </div>
+</ng-container>
